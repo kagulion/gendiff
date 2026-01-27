@@ -28,8 +28,14 @@
 ```
 project/
 ├── bin/                     // CLI
-├── src/                     // основной код
-├── __tests__/               // тесты
+├── src/
+│   ├── genDiff.js           // основа: файлы → объекты → diff
+│   ├── diffObjects.js       // сравнение плоских объектов
+│   ├── readFile.js          // чтение файла
+│   ├── getFormat.js         // определение формата
+│   ├── parsers.js           // Парсинг строки в JS-объект
+│   └── loadData.js          // файл → JS-объект
+├── __tests__/
 ├── package.json
 └── package-lock.json
 ```

@@ -1,4 +1,4 @@
-const genDiff = (obj1, obj2) => {
+const diffObjects = (obj1, obj2) => {
   const keys = [...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
 
   return keys.map((key) => {
@@ -35,4 +35,4 @@ const genDiff = (obj1, obj2) => {
   })
 }
 
-export default genDiff
+export default diffObjects
