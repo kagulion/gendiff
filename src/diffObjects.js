@@ -1,3 +1,8 @@
+// Проверка на чистый объект
+const isObject = (value) =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+// Основная функция
 const diffObjects = (obj1, obj2) => {
   const keys = [...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
 
@@ -15,6 +20,17 @@ const diffObjects = (obj1, obj2) => {
         key,
         type: 'добавлен',
         value: obj2[key],
+      }
+    }
+
+    const value1 = obj1[key]
+    const value2 = obj2[key]
+
+    if (isObject(value1) && isObject(value2)) {
+      return {
+        key,
+        type: 'вложенный',
+        children: diffObjects(value1, value2),
       }
     }
 
