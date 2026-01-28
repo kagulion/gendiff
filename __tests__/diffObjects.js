@@ -43,3 +43,19 @@ test('смешанные случаи', () => {
     { key: 'c', type: 'добавлен', value: 4 },
   ])
 })
+
+test('вложенные объекты', () => {
+  const obj1 = { common: { a: 1 } }
+  const obj2 = { common: { a: 2, b: 3 } }
+
+  expect(diffObjects(obj1, obj2)).toEqual([
+    {
+      key: 'common',
+      type: 'вложенный',
+      children: [
+        { key: 'a', type: 'обновлён', oldValue: 1, newValue: 2 },
+        { key: 'b', type: 'добавлен', value: 3 },
+      ]
+    },
+  ])
+})
