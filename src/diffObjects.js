@@ -1,13 +1,18 @@
-// Проверка на чистый объект
-const isObject = (value) =>
-  typeof value === 'object' && value !== null && !Array.isArray(value)
+import isObject from './isObject.js'
+
+// Получение ключей
+const getKeys = (obj1, obj2) =>
+  [...new Set([...Object.keys(obj1), ...Object.keys(obj2)])].sort()
 
 // Основная функция
 const diffObjects = (obj1, obj2) => {
-  const keys = [...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
+  const keys = getKeys(obj1, obj2)
 
   return keys.map((key) => {
-    if (!(key in obj2)) {
+    const hasKey1 = key in obj1
+    const hasKey2 = key in obj2
+
+    if (!hasKey2) {
       return {
         key,
         type: 'удалён',
@@ -15,7 +20,7 @@ const diffObjects = (obj1, obj2) => {
       }
     }
 
-    if (!(key in obj1)) {
+    if (!hasKey1) {
       return {
         key,
         type: 'добавлен',
@@ -34,19 +39,19 @@ const diffObjects = (obj1, obj2) => {
       }
     }
 
-    if (obj1[key] !== obj2[key]) {
+    if (value1 !== value2) {
       return {
         key,
         type: 'обновлён',
-        oldValue: obj1[key],
-        newValue: obj2[key],
+        oldValue: value1,
+        newValue: value2,
       }
     }
 
     return {
       key,
       type: 'не изменён',
-      value: obj1[key],
+      value: value1,
     }
   })
 }
