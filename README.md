@@ -29,6 +29,9 @@
 project/
 ├── bin/                     // CLI
 ├── src/
+│   ├── formatters/          // форматтеры
+│   │   ├── stylish.js
+│   │   ├── ...
 │   ├── genDiff.js           // основа: файлы → объекты → diff
 │   ├── diffObjects.js       // сравнение плоских объектов
 │   ├── readFile.js          // чтение файла
