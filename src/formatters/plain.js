@@ -23,7 +23,7 @@ const plain = (tree, parentPath = '') => {
         return null
 
       case 'обновлён':
-        return `Свойство '${propertyPath}' было обновлено. С ${formatValue(node.oldValue)} в ${formatValue(node.newValue)}`
+        return `Свойство '${propertyPath}' было обновлено. С ${formatValue(node.oldValue)} на ${formatValue(node.newValue)}`
 
       case 'вложенный':
         return plain(node.children, propertyPath)
@@ -33,7 +33,7 @@ const plain = (tree, parentPath = '') => {
     }
   })
 
-  return lines.join('\n')
+  return lines.filter(Boolean).join('\n')
 }
 
 export default plain
