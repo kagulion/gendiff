@@ -15,7 +15,6 @@ export default [
       reportUnusedDisableDirectives: true,
     },
     rules: {
-      indent: ['error', 2],
       'linebreak-style': ['error', 'unix'],
       semi: ['error', 'never'],
       'no-console': 'off',
