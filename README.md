@@ -27,17 +27,12 @@
 
 ```
 project/
-├── bin/                     // CLI
+├── bin/                     // точка входа CLI
 ├── src/
-│   ├── formatters/          // форматтеры
-│   │   ├── stylish.js
-│   │   ├── ...
-│   ├── genDiff.js           // основа: файлы → объекты → diff
-│   ├── diffObjects.js       // сравнение плоских объектов
-│   ├── readFile.js          // чтение файла
-│   ├── getFormat.js         // определение формата
-│   ├── parsers.js           // Парсинг строки в JS-объект
-│   └── loadData.js          // файл → JS-объект
+│   ├── formatters/          
+│   │   ├── index.js         // диспетчер форматтеров
+│   ├── genDiff.js           // основная функция
+│   ├── cli.js               // логика запуска
 ├── __tests__/
 ├── package.json
 └── package-lock.json

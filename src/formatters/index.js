@@ -2,19 +2,17 @@ import plain from './plain.js'
 import json from './json.js'
 import stylish from './stylish.js'
 
-// Общий диспетчер форматтеров
+const formats = {
+  stylish,
+  plain,
+  json,
+}
+
 export default (diffTree, format) => {
-  switch (format) {
-    case 'plain':
-      return plain(diffTree)
-
-    case 'json':
-      return json(diffTree)
-
-    case 'stylish':
-      return stylish(diffTree)
-
-    default:
-      throw new Error(`Неизвестный формат: ${format}`)
+  const formatter = formats[format]
+  if (!formatter) {
+    throw new Error(`Неизвестный формат: ${format}`)
   }
+
+  return formatter(diffTree)
 }
