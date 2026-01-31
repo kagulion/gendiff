@@ -10,6 +10,22 @@
 
 По смыслу это похоже на git diff, но не для текста, а для структурированных данных (JSON, YAML).
 
+## Структура проекта
+
+```
+project/
+├── bin/                     // запуск CLI
+├── src/
+│   ├── formatters/
+│   │   ├── index.js         // диспетчер форматтеров
+│   ├── genDiff.js           // единая точка входа
+│   ├── cli.js               // логика запуска CLI
+├── __tests__/
+│   ├── __fixtures__/        // фикстуры
+├── package.json
+└── package-lock.json
+```
+
 ## Зависимости
 
 ### Рабочие зависимости
@@ -22,19 +38,3 @@
 - jest
 - eslint
 - prettier
-
-## Структура проекта
-
-```
-project/
-├── bin/                     // точка входа CLI
-├── src/
-│   ├── formatters/          
-│   │   ├── index.js         // диспетчер форматтеров
-│   ├── genDiff.js           // основная функция
-│   ├── cli.js               // логика запуска
-├── __tests__/
-│   ├── __fixtures__/        // фикстуры
-├── package.json
-└── package-lock.json
-```
