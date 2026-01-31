@@ -34,6 +34,7 @@ project/
 │   ├── genDiff.js           // основная функция
 │   ├── cli.js               // логика запуска
 ├── __tests__/
+│   ├── __fixtures__/        // фикстуры
 ├── package.json
 └── package-lock.json
 ```
