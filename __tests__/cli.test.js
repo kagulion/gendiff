@@ -7,8 +7,7 @@ import { dirname } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-describe('CLI Integration Tests', () => {
-  // Create temporary test files
+describe('Интеграционные тесты CLI', () => {
   const beforeFile = path.join(
     __dirname,
     '__fixtures__',
@@ -21,7 +20,6 @@ describe('CLI Integration Tests', () => {
   )
 
   beforeAll(() => {
-    // Create temporary test files for integration tests
     const beforeData = {
       host: 'localhost',
       port: 3000,
@@ -46,7 +44,6 @@ describe('CLI Integration Tests', () => {
   })
 
   afterAll(() => {
-    // Clean up temporary test files
     if (fs.existsSync(beforeFile)) {
       fs.unlinkSync(beforeFile)
     }
@@ -55,7 +52,7 @@ describe('CLI Integration Tests', () => {
     }
   })
 
-  test('should compare two JSON files and output stylish format by default', (done) => {
+  test('должен сравнивать два файла JSON и по умолчанию выводить формат stylish', (done) => {
     const cliPath = path.join(__dirname, '..', 'bin', 'gendiff.js')
     const child = spawn('node', [cliPath, beforeFile, afterFile])
 
@@ -75,7 +72,7 @@ describe('CLI Integration Tests', () => {
     })
   })
 
-  test('should compare two JSON files and output plain format', (done) => {
+  test('должен сравнить два файла JSON и вывести результат в формате plain', (done) => {
     const cliPath = path.join(__dirname, '..', 'bin', 'gendiff.js')
     const child = spawn('node', [cliPath, '-f', 'plain', beforeFile, afterFile])
 
@@ -94,7 +91,7 @@ describe('CLI Integration Tests', () => {
     })
   })
 
-  test('should compare two JSON files and output json format', (done) => {
+  test('должен сравнить два файла JSON и вывести результат в формате json', (done) => {
     const cliPath = path.join(__dirname, '..', 'bin', 'gendiff.js')
     const child = spawn('node', [cliPath, '-f', 'json', beforeFile, afterFile])
 
@@ -114,7 +111,7 @@ describe('CLI Integration Tests', () => {
     })
   })
 
-  test('should handle invalid file paths gracefully', (done) => {
+  test('должен корректно обрабатывать недействительные пути к файлам', (done) => {
     const cliPath = path.join(__dirname, '..', 'bin', 'gendiff.js')
     const fakeFile = path.join(__dirname, '__fixtures__', 'nonexistent.json')
     const child = spawn('node', [cliPath, fakeFile, afterFile])
@@ -131,7 +128,7 @@ describe('CLI Integration Tests', () => {
     })
   })
 
-  test('should handle unsupported file format', (done) => {
+  test('должен обрабатывать неподдерживаемый формат файла', (done) => {
     const cliPath = path.join(__dirname, '..', 'bin', 'gendiff.js')
     const unsupportedFile = path.join(
       __dirname,
@@ -139,18 +136,14 @@ describe('CLI Integration Tests', () => {
       'unsupported.xyz',
     )
 
-    // Create a dummy unsupported file
     fs.writeFileSync(unsupportedFile, '{"test": "data"}')
 
     const child = spawn('node', [cliPath, beforeFile, unsupportedFile])
 
     child.on('close', (code) => {
-      // Clean up the unsupported file
       fs.unlinkSync(unsupportedFile)
 
-      // The exit code depends on how the error is handled
-      // If the error is caught properly, it should exit with code 1
-      expect(code).toBeGreaterThan(-1) // Process terminated
+      expect(code).toBeGreaterThan(-1)
       done()
     })
   })
