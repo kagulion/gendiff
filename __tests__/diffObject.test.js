@@ -55,7 +55,7 @@ test('вложенные объекты', () => {
       children: [
         { key: 'a', type: 'обновлён', oldValue: 1, newValue: 2 },
         { key: 'b', type: 'добавлен', value: 3 },
-      ]
+      ],
     },
   ])
 })

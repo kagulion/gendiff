@@ -1,6 +1,5 @@
 import { program } from 'commander'
-import genDiff from './genDiff.js'
-import formatDispatch from './formatters/index.js'
+import renderDiff from './index.js'
 
 program
   .name('Вычислитель отличий')
@@ -15,8 +14,7 @@ program
   )
   .action((filepath1, filepath2, options) => {
     try {
-      const diffTree = genDiff(filepath1, filepath2)
-      const output = formatDispatch(diffTree, options.format)
+      const output = renderDiff(filepath1, filepath2, options.format)
       console.log(output)
     } catch (err) {
       console.error(`Ошибка: ${err.message}`)
